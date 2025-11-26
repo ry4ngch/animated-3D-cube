@@ -44,7 +44,7 @@ npx serve
 ```bash
 /animated-3D-cube
 │── index.html        # Main UI and cube container and logic
-└── style.css         # Cube styling, animation 
+└── stylev2.css         # Cube styling, animation 
 ```
 
 ## Usage

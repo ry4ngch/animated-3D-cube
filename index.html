@@ -22,6 +22,8 @@
           <input type="number" min=-360 max=360 value=30 name="rotateX" onChange="rotateView()" title="degrees">
           <label>Rotate Y:</label>
           <input type="number" min=-360 max=360 value=30 name="rotateY" onChange="rotateView()" title="degrees">
+          <label>Rotate Z:</label>
+          <input type="number" min=-360 max=360 value=0 name="rotateZ" onChange="rotateView()" title="degrees">
           <label for="'animation_type">Animation Type:</label>
           <select onChange="toggleAnimation()" name="animation_type" id="animation_type">
             <option value="animate-bounce">Bounce</option>
@@ -70,6 +72,10 @@
 
           if(event.target.name === 'rotateY'){
             container.setAttribute('style', `--rotate-y: ${event.target.value}deg`);
+          }
+
+          if(event.target.name === 'rotateZ'){
+            container.setAttribute('style', `--rotate-z: ${event.target.value}deg`);
           }
         }
 

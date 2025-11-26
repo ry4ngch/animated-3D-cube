@@ -23,12 +23,13 @@ body {
   --cuboid-depth: 20vmin;
   --rotate-x: 30deg;
   --rotate-y: 30deg;
+  --rotate-z: 0deg;
 }
 
 .container {
   transform-style: preserve-3d;
   position: relative;
-  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) rotateZ(var(--rotate-z));
   display: flex;
   align-items: center;
   justify-content: center;
