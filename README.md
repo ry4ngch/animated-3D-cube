@@ -28,7 +28,7 @@ The UI allows you to adjust cube size, rotation, animation speed, toggle explode
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/ry4ngch/animated-3D-cube.git
-cd 3d-cube-viewer
+cd animated-3D-cube
 ```
 
 ### 2. Open the App
