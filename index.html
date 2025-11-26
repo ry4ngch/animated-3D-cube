@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube Animation</title>
+    <link rel="stylesheet" href="./stylesv2.css">
+</head>
+<body>
+      <div class="input-controls">
+        <div class="input-content">
+          <input type="checkbox" name="exploded" onClick="toggleExplode()">
+          <label for="'exploded">Explode</label>
+          <input type="checkbox" name="plane-on" onClick="toggleCuboidPlane()">
+          <label for="'plane-on">Show Cuboid Plane</label>
+          <input type="checkbox" name="run-animation" onClick="toggleAnimation()" id="run_animation">
+          <label for="'animation-on">Show Animation</label>
+          <input type="checkbox" name="showBase" onClick="toggleBase()" checked>
+          <label for="'animation-on">Show Base</label>
+        </div>
+        <div class="input-content">
+          <label>Rotate X:</label>
+          <input type="number" min=-360 max=360 value=30 name="rotateX" onChange="rotateView()" title="degrees">
+          <label>Rotate Y:</label>
+          <input type="number" min=-360 max=360 value=30 name="rotateY" onChange="rotateView()" title="degrees">
+          <label for="'animation_type">Animation Type:</label>
+          <select onChange="toggleAnimation()" name="animation_type" id="animation_type">
+            <option value="animate-bounce">Bounce</option>
+            <option value="animate-spin">Spin</option>
+            <option value="animate-rotate">Rotate</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="cuboid cuboid__plane-off">
+          <div class="cuboid__side">Back</div>
+          <div class="cuboid__side">Front</div>
+          <div class="cuboid__side">Left</div>
+          <div class="cuboid__side">Right</div>
+          <div class="cuboid__side">Top</div>
+          <div class="cuboid__side btm-shadow">Bottom</div>
+        </div>
+        <div class="base_plane"></div>
+      </div>
+
+      <div class="input-content input-controls-bottom">
+        <label>Cuboid Width:</label>
+        <input type="number" min=0 value=20 name="cuboid-width" step=5 onChange="adjustSize()" title="value in vmin">
+        <label>Cuboid Height:</label>
+        <input type="number" min=0 value=20 name="cuboid-height" step=5 onChange="adjustSize()" title="value in vmin">
+        <label>Cuboid Depth:</label>
+        <input type="number" min=0 value=20 name="cuboid-depth" step=5 onChange="adjustSize()" title="value in vmin">
+      </div>
+      
+
+      <script>
+        function toggleExplode(){
+          document.querySelector('.cuboid').classList.toggle('exploded');
+        }
+
+        function toggleCuboidPlane(){
+          document.querySelector('.cuboid').classList.toggle('cuboid__plane-off');
+        }
+
+        function rotateView(){
+          const container = document.querySelector('.container');
+          if(event.target.name === 'rotateX'){
+            container.setAttribute('style', `--rotate-x: ${event.target.value}deg`);
+          }
+
+          if(event.target.name === 'rotateY'){
+            container.setAttribute('style', `--rotate-y: ${event.target.value}deg`);
+          }
+        }
+
+        function toggleBase(){
+          const base = document.querySelector('.base_plane');
+          base.classList.toggle('base__hidden');
+        }
+
+        function toggleAnimation(){
+          const cuboid = document.querySelector('.cuboid');
+          const classesToRemove = Array.from(cuboid.classList).filter(className => className.startsWith('animate-'));
+          classesToRemove.forEach(className => {
+            cuboid.classList.remove(className);
+          });
+          const faces = Array.from(cuboid.childNodes).filter(node => node.nodeType === Node.ELEMENT_NODE && node.tagName.toLowerCase() === 'div');
+          if(document.getElementById('run_animation').checked){
+            const animation_type = document.getElementById('animation_type').value;
+            if(animation_type !== 'animate-bounce'){
+              faces[faces.length-1].classList.remove('btm-shadow');
+            } else {
+              faces[faces.length-1].classList.add('btm-shadow');
+            }
+            cuboid.classList.toggle(event.target.type==='checkbox' ? animation_type : event.target.value);
+          } else {
+            if(!faces[faces.length-1].classList.contains('btm-shadow')){
+              faces[faces.length-1].classList.add('btm-shadow');
+            }
+          }
+        }
+
+        function adjustSize(){
+          const container = document.querySelector('.container');
+          container.setAttribute('style', `--${event.target.name}: ${event.target.value}vmin`);
+        }
+      </script>
+</body>
+</html>
