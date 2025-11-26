@@ -27,7 +27,7 @@ The UI allows you to adjust cube size, rotation, animation speed, toggle explode
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/3d-cube-viewer.git
+git clone https://github.com/ry4ngch/animated-3D-cube.git
 cd 3d-cube-viewer
 ```
 
@@ -42,7 +42,7 @@ npx serve
 ## Project Structure
 
 ```bash
-/3d-cube-viewer
+/animated-3D-cube
 │── index.html        # Main UI and cube container and logic
 └── style.css         # Cube styling, animation 
 ```
